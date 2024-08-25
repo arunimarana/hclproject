@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Trade Management System</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style type="text/css">
+		.has-error {
+			color: red;
+		}
+	</style>
+	<style>
+		body {
+			background-image: url("paper.gif");
+			background-color: #cccccc;
+		}
+	</style>
+
+
+	<style>
+		.button {
+			background-color: #4CAF50;
+			/* Green */
+			border: none;
+			color: white;
+			padding: 8px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 18px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+	</style>
+	<style>
+		a:link,
+		a:visited {
+			background-color: #000000;
+			color: white;
+			padding: 13px 25px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		a:hover,
+		a:active {
+			background-color: grey;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container my-2">
+		<h1 class="text-center">ALL TRADES</h1>
+		<div>
+			<a th:href="@{/showNewTradeForm}" class="btn btn-primary btn-sm mb-3"> ADD NEW TRADE </a>
+
+			<form class="form-inline my-2 my-lg-0" th:action="@{/trade}" method="get">
+				<input name="tradeId" required class="form-control mr-sm-2" type="search" th:value="${tradeId}"
+					placeholder="Enter Trade Id" aria-label="Search">
+				<button class="btn" type="submit">Search</button>
+				<a class="btn" th:href="@{/}"> Reset</a>
+			</form>
+		</div>
+
+		<table border="1" class="table">
+			<thead>
+				<tr>
+					<th>
+						Trade Id
+
+					</th>
+					<th>
+						Trade Version
+
+
+
+					</th>
+					<th>
+						Counter-Party Id
+
+					</th>
+					<th>
+						Book ID
+
+					</th>
+					<th>
+						Maturity Date
+
+					</th>
+					<th>Created Date
+
+					</th>
+					<th>
+						Expired
+
+					</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="trade : ${listTrades}">
+					<td th:text="'T'+${trade.tradeId}"></td>
+					<td th:text="${trade.version}"></td>
+					<td th:text="${trade.counterPartyId}"></td>
+					<td th:text="${trade.bookId}"></td>
+					<td th:text="${trade.maturityDate}"></td>
+					<td th:text="${trade.createdDate}"></td>
+
+					<div th:switch="${trade.expired}">
+						<td th:case="true">Y</td>
+						<td th:case="false">N</td>
+					</div>
+
+
+
+					<td> <a th:href="@{/showFormForUpdate/{id}(id=${trade.tradeId})}" class="btn btn-primary">Update</a>
+
+					</td>
+				</tr>
+				<tr th:if="${#lists.isEmpty(listTrades)}">
+					<td>
+						Data Not Found
+					<td>
+				<tr>
+			</tbody>
+		</table>
+
+		
+	</div>
+</body>
+
+</html>

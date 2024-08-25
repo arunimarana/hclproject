@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Trade Management System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	<style type="text/css">
+		.has-error {
+			color: red;
+		}
+		</style>
+		<style>
+		body {
+			background-image: url("paper.gif");
+			background-color: #cccccc;
+		}
+		</style>
+		 
+		 
+		<style>
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 8px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 18px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+		 
+		
+		</style>
+		<style>
+		a:link, a:visited {
+			background-color: #000000;
+			color: white;
+			padding: 13px 25px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+		}
+		 
+		a:hover, a:active {
+			background-color: grey;
+		}
+		</style>
+		
+	
+</head>
+<body>
+	<div class="container">
+		<h1>NEW TRDAE DETAILS</h1>
+		<hr>
+		<h2>Save</h2>
+<br>
+<br>
+		<form action="#" th:action="@{/saveTrade}" th:object="${trade}"
+			method="POST">
+			
+			<label for="version">Version</label>
+			<input type="number" th:field="*{version}"
+				placeholder="Trade Version" class="form-control mb-4 col-4">
+				
+				<label for="counterPartyId">Counter-Party Id</label>
+				<input type="text" th:field="*{counterPartyId}" required
+				placeholder="Counter-Party Id" class="form-control mb-4 col-4">
+				
+				<label for="counterPartyId">Book-Id</label>
+				<input type="text" th:field="*{bookId}" required
+				placeholder="Book-Id" class="form-control mb-4 col-4">
+				
+				<label for="counterPartyId">Maturity Date</label>
+				<input id="datepicker" type="text" th:field="*{maturityDate}" required
+				placeholder="Maturity Date" class="form-control mb-4 col-4">
+				
+				<label for="expired">Expired</label>
+				
+				
+  				<input  type="checkbox" th:field="*{expired}" id="flexSwitchCheckDefault">
+				
+				<br>
+				
+				<button  type="submit" class="btn"> Save Trade</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href = "@{/}"> Back to Trade List</a>
+	</div>
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+	<script>
+     $("#datepicker").datepicker({
+						    changeMonth: true,
+						    changeYear: true,
+						   	minDate: 0,
+						   	dateFormat: 'dd/mm/yy',
+					      	onSelect: function(selected) {
+					         $("#datepicker").datepicker("option", "minDate", selected)
+
+					      }
+					  });
+</script>
+</body>
+</html>
